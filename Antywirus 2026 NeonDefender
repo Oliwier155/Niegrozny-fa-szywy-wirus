@@ -1,0 +1,12 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+from PIL import Image, ImageTk
+import webbrowser
+import random
+import os
+
+# ====== USTAWIENIA ======
+LINK = "https://www.youtube.com/watch?v=0m1pe04FEq8&list=PLy7RpS8C1GsFUcpH0DdLK8YntCTfm0SCu&index=3"
+OBRAZ = "obraz.jpg"
+
+# czas wyświetlania obrazu (w sekundac
