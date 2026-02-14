@@ -1,0 +1,50 @@
+import tkinter as tk
+from PIL import Image, ImageTk
+import webbrowser
+import pygame
+import os
+
+# === USTAWIENIA ===
+LINK = "https://www.youtube.com/watch?v=UCO43fpmtmJGzMm40yM2BXyw"
+OBRAZ = "obraz.png"      # nazwa pliku z obrazem
+MUZYKA = "muzyka.mp3"    # nazwa pliku z piosenką
+CZAS_ZAMKNIECIA = 24 * 60 * 60  # 24 godziny w sekundach
+
+# Otwórz przeglądarkę
+webbrowser.open(LINK)
+
+# Uruchom muzykę
+pygame.mixer.init()
+if os.path.exists(MUZYKA):
+    pygame.mixer.music.load(MUZYKA)
+    pygame.mixer.music.play(-1)  # -1 = zapętlaj
+else:
+    print("Nie znaleziono pliku z muzyką:", MUZYKA)
+
+# Okno
+root = tk.Tk()
+root.title("Symulator wirusa (FAKE)")
+root.attributes("-fullscreen", True)
+root.configure(bg="black")
+
+# Usuń ramki okna
+root.overrideredirect(True)
+
+# Wczytaj obraz
+img = Image.open(OBRAZ)
+screen_w = root.winfo_screenwidth()
+screen_h = root.winfo_screenheight()
+img = img.resize((screen_w, screen_h))
+photo = ImageTk.PhotoImage(img)
+
+label = tk.Label(root, image=photo, bg="black")
+label.pack(fill="both", expand=True)
+
+# Zamknij po 24 godzinach
+def zamknij():
+    pygame.mixer.music.stop()
+    root.destroy()
+
+root.after(CZAS_ZAMKNIECIA * 1000, zamknij)
+
+root.mainloop()
