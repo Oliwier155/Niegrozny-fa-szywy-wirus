@@ -1,0 +1,16 @@
+@echo off
+color 0A
+title System Alert
+
+echo Uruchamianie procesu...
+timeout /t 2 >nul
+
+for /l %%x in (1,1,5) do (
+    start cmd /k echo Wykryto aktywnosc... %%x
+    timeout /t 1 >nul
+)
+
+echo.
+echo ZART :) Mozesz zamknac okna.
+pause
+exit
