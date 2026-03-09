@@ -1,0 +1,6 @@
+import os
+
+def restart_pc():
+    os.system("shutdown /r /t 0")
+
+restart_pc()
